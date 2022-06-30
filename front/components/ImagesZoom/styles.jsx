@@ -8,7 +8,7 @@ const Global = createGlobalStyle`
   .ant-card-cover {
     transform: none !important;
   }
-`
+`;
 
 const Overlay = styled.div`
   position: fixed;
@@ -17,7 +17,7 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-`
+`;
 
 const Header = styled.header`
   height: 44px;
@@ -83,4 +83,4 @@ const Indicator = styled.div`
   }
 `;
 
-export { Overlay, Header, SlickWrapper, CloseBtn, ImgWrapper, Global, Indicator }
+export { Overlay, Header, SlickWrapper, CloseBtn, ImgWrapper, Global, Indicator };

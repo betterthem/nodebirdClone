@@ -16,12 +16,18 @@ const Global = createGlobalStyle`
   }
 `;
 
+const ContentWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const MenuWrapper = styled(Menu)`
   margin-bottom: 20px;
-`
+`;
 
 const SearchInput = styled(Input.Search)`
   vertical-align: middle;
-`
+`;
 
-export { SearchInput, MenuWrapper, Global }
+
+export { SearchInput, MenuWrapper, Global };

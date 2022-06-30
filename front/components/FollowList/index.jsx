@@ -22,12 +22,12 @@ const FollowList = ({ header, data }) => {
         </List.Item>
       )}
     />
-  )
-}
+  );
+};
 
 FollowList.propTypes = {
   header: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
-}
+};
 
 export default FollowList;
