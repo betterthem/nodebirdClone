@@ -1,5 +1,7 @@
 .idea/
-front/node_modules/
+front/node_modules
 .next/
 back/config
 back/.env
+back/node_modules
+back/uploads

@@ -22,7 +22,6 @@ const Overlay = styled.div`
 const Header = styled.header`
   height: 44px;
   background: #090909;
-  opacity: 0.9;
   position: relative;
   padding: 0;
   text-align: center;
@@ -31,7 +30,6 @@ const Header = styled.header`
     margin: 0;
     font-size: 18px;
     color: white;
-    opacity: 0.5;
     line-height: 44px;
   }
   
@@ -47,13 +45,11 @@ const CloseBtn = styled(CloseOutlined)`
   border: none;
   line-height: 14px;
   cursor: pointer;
-  opacity: 0.9;
 `;
 
 const SlickWrapper = styled.div`
   height: calc(100% - 44px);
   background: #090909;
-  opacity: 0.9;
 `;
 
 const ImgWrapper = styled.div`
@@ -63,7 +59,6 @@ const ImgWrapper = styled.div`
   & img {
     margin: 0 auto;
     max-height: 750px;
-    opacity: 1;
   }
 `;
 

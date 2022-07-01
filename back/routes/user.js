@@ -7,6 +7,7 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const router = express.Router();
 
 router.get('/',  async (req, res, next) => {
+  console.log(req.headers);
   try {
     if (req.user) {
       const user = await User.findOne({
@@ -122,6 +123,92 @@ router.patch('/nickname', isLoggedIn, async (req, res, next) => {
       }
     });
     res.status(200).json({ nickname: req.body.nickname });
+  } catch (error) {
+    console.error(error);
+    next(error) // status 500
+  }
+})
+
+// PATCH user/1/follow
+router.patch('/:userId/follow', isLoggedIn, async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: { id: req.params.userId }
+    })
+    if (!user) {
+      res.status(403).send('존재하지 않은 회원입니다.');
+    }
+    await user.addFollowers(req.user.id)
+    res.status(200).json({ UserId: parseInt(req.params.userId) }); // action.data
+  } catch (error) {
+    console.error(error);
+    next(error) // status 500
+  }
+})
+
+// DELETE user/1/follow 언팔로우
+router.delete('/:userId/follow', isLoggedIn, async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: { id: req.params.userId }
+    })
+    if (!user) {
+      res.status(403).send('존재하지 않은 회원입니다.');
+    }
+    await user.removeFollowers(req.user.id)
+    res.status(200).json({ UserId: parseInt(req.params.userId) });
+  } catch (error) {
+    console.error(error);
+    next(error) // status 500
+  }
+})
+
+// DELETE user/follower/:userId 팔로워 제거
+router.delete('/follower/:userId', isLoggedIn, async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: { id: req.params.userId },
+    });
+    if (!user) {
+      res.status(403).send('존재하지 않는 사람입니다.');
+    }
+    await user.removeFollowings(req.user.id);
+    res.status(200).json({ UserId: parseInt(req.params.userId) });
+
+  } catch (error) {
+    console.error(error);
+    next(error) // status 500
+  }
+})
+
+// GET user/followers
+router.get('/followers', isLoggedIn, async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: { id: req.user.id }
+    })
+    if (!user) {
+      res.status(403).send('존재하지 않은 회원입니다.');
+    }
+    const followers = await user.getFollowers();
+    res.status(200).json(followers); // action.data
+  } catch (error) {
+    console.error(error);
+    next(error) // status 500
+  }
+})
+
+// GET user/followers
+router.get('/followings', isLoggedIn, async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: { id: req.user.id }
+    })
+    if (!user) {
+      res.status(403).send('존재하지 않은 회원입니다.');
+    }
+    const followings = await user.getFollowings();
+    res.status(200).json(followings); // action.data
   } catch (error) {
     console.error(error);
     next(error) // status 500
