@@ -4,12 +4,12 @@ import {EllipsisOutlined, HeartOutlined, HeartTwoTone, MessageOutlined, RetweetO
 import {useDispatch, useSelector} from "react-redux";
 import PropTypes from "prop-types";
 import Link from "next/link";
+import moment from "moment";
 import PostImages from "../PostImages";
 import CommentForm from "../CommentForm";
 import PostCardContent from "../PostCardContent";
 import {LIKE_POST_REQUEST, REMOVE_POST_REQUEST, RETWEET_REQUEST, UNLIKE_POST_REQUEST} from "../../reducers/post";
 import FollowButton from "../FollowButton";
-import moment from "moment";
 
 moment.locale('ko');
 
