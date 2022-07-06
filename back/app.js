@@ -42,7 +42,6 @@ app.use(cors({
 app.use('/', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
   saveUninitialized: false,
   resave: false,
@@ -50,6 +49,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // app.get -> 가져오다
 // app.post -> 생성하다
