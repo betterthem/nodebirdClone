@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 //도메인이 다를 때 생기는 에러 설정 프론트에서도 axios 설정 해줘야함
 app.use(cors({
-  origin: true,
+  origin: ['http://localhost:3060', 'nodebird.com', 'http://13.125.176.66'],
   credentials: true, // 쿠키
 }));
 
