@@ -2,7 +2,5 @@
 .next/
 INSEONHWANGISFRONTENDDEVELOPER.pem
 front/node_modules
-back/config
 back/.env
 back/node_modules
-back/uploads
