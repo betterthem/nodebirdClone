@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const path = require('path');
+const hpp = require('hpp');
+const helmet = require('helmet');
 
 const postRouter = require('./routes/post');
 const postsRouter = require('./routes/posts');
@@ -24,10 +26,16 @@ db.sequelize.sync()
   .catch(console.error);
 passportConfig();
 
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'production') {
+  app.use(morgan('combined'));
+  app.use(hpp());
+  app.use(helmet());
+} else {
+  app.use(morgan('dev'));
+}
 //도메인이 다를 때 생기는 에러 설정 프론트에서도 axios 설정 해줘야함
 app.use(cors({
-  origin: true,
+  origin: ['http://localhost:3000', 'nodebird.com'],
   credentials: true, // 쿠키
 }));
 
